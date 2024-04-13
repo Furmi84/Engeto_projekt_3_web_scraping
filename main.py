@@ -10,7 +10,10 @@ def vymazani_obrazovky():
         Vymaže přikazovy řádek
 
         """
-    os.system("cls")
+    if os.name == 'nt':  # nt znamená Windows
+        os.system('cls')
+    else:  # Posix (Linux, OS X, ...)
+        os.system('clear')
 
 
 def nacti_stranku(url):
@@ -121,16 +124,10 @@ def ziskej_data_ze_stranky(kod, nazev_obce, adresa):
 
     for tabulka in tabulky[1:]:
         for radek in tabulka.find_all('tr'):
-            vysl_z = zpracuj_radek_a_filtruj(
-                radek.getText(" "),
-                akce_ost['zahlavi']['indexy'],
-                akce_ost['zahlavi']['nezadouci'])
+            vysl_z = zpracuj_radek_a_filtruj(radek.getText(" "),akce_ost['zahlavi']['indexy'],akce_ost['zahlavi']['nezadouci'])
             akce_ost['zahlavi']['cil'].extend(vysl_z)
 
-            vysl_h = zpracuj_radek_a_filtruj(
-                radek.getText(" "),
-                akce_ost['hodnoty']['indexy'],
-                akce_ost['hodnoty']['nezadouci'])
+            vysl_h = zpracuj_radek_a_filtruj(radek.getText(" "),akce_ost['hodnoty']['indexy'],akce_ost['hodnoty']['nezadouci'])
             akce_ost['hodnoty']['cil'].extend(vysl_h)
 
     return zahlavi, hodnoty
