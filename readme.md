@@ -19,21 +19,19 @@ Projekt je napsán v Pythonu a využívá knihovny:
 
 ## Instalace
 Pro spuštění skriptu je potřeba mít nainstalovaný Python a následující knihovny:
-```bash
+```
 pip install beautifulsoup4
 pip install requests
 ```
-
-Hokus pokus bla bla bla bla 
-
-Spouštění aplikace
+## Spouštění aplikace
 Pomoci příkazového řádku.
 Příklad:
-"""
-
+```
 python main.py 'https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103' 'vysledky_voleb.csv'
+```
 
-"""
+První argument - adresa ze kterého ma program načítat informace
+Druhý argument - jméno souboru ve formatu csv
 
-První argument - adresa ze ktereho ma program nacitat informace
-Druhy argument - jméno souboru ve formatu csv
+## Běh aplikace
+## Výsledek
