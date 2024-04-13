@@ -1,6 +1,6 @@
-Hokus pokus bla bla bla bla 
+#Hokus pokus bla bla bla bla 
 
-Spouštění aplikace
+##Spouštění aplikace
 Pomoci příkazového řádku.
 Příklad:
 """
