@@ -80,12 +80,6 @@ def ziskej_seznam_okrsku(url):
 
     jmena_obci, kod_obci, odkazy = [], [], []
 
-    akce = {
-        'jmena_obci': {'indexy': [2], 'cil': jmena_obci, 'nezadouci': [' Obec ', ' číslo ', ' Výběr okrsku ', ' název ']},
-        'kod_obci': {'indexy': [1], 'cil': kod_obci, 'nezadouci': [' Obec ', ' číslo ', ' Výběr okrsku ', ' název ']},
-        'odkazy': {'indexy': [], 'cil': odkazy, 'nezadouci': ['  ', '  ', '  ', '  ']},
-    }
-
     tabulky = web.find_all("table")
     for tabulka in tabulky:
         for index, radek in enumerate(tabulka.find_all("tr")):
@@ -93,16 +87,12 @@ def ziskej_seznam_okrsku(url):
                 odkaz_el = radek.find("a")
                 if odkaz_el:
                     odkaz = prefix_url + odkaz_el["href"]
-                    akce['odkazy']['cil'].append(odkaz)
-
-                    vysl_jmena = zpracuj_radek_a_filtruj(radek.getText(" "), akce['jmena_obci']['indexy'],
-                                                     akce['jmena_obci']['nezadouci'])
-                    akce['jmena_obci']['cil'].extend(vysl_jmena)
-
-                    vysl_kod = zpracuj_radek_a_filtruj(radek.getText(" "), akce['kod_obci']['indexy'],
-                                                     akce['kod_obci']['nezadouci'])
-                    akce['kod_obci']['cil'].extend(vysl_kod)
-
+                    kod, jmeno = zpracuj_radek_a_filtruj(radek.getText(" "), [1, 2],
+                        [' Obec ', ' číslo ',
+                            ' Výběr okrsku ', ' název '])
+                    jmena_obci.append(jmeno)
+                    kod_obci.append(kod)
+                    odkazy.append(odkaz)
     return zip(kod_obci, jmena_obci, odkazy)
 
 
@@ -155,8 +145,7 @@ def ziskej_data_ze_stranky(kod, nazev_obce, adresa):
 
 
 def main():
-    #adresa = 'https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103'
-    #nazev_souboru = 'vysledky_voleb.csv'
+
     adresa = sys.argv[1]
     nazev_souboru = sys.argv[2]
     progress_bar = "Pracuji"

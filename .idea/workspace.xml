@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b679cb7d-e8c7-494a-a217-4c9cff1a8c32" name="Changes" comment="Zalozeni noveho projektu">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="b679cb7d-e8c7-494a-a217-4c9cff1a8c32" name="Changes" comment="Uprava stavajiciho projektu">
+      <change afterPath="$PROJECT_DIR$/Archiv/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vystup.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,14 +42,24 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.main.executor": "Run",
+    "Python.main_v1.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/MartinFurmanek/PycharmProjects/Engeto_Projekt_3_web_scraping",
     "settings.editor.selected.configurable": "Settings.Markdown"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MartinFurmanek\PycharmProjects\Engeto_Projekt_3_web_scraping" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MartinFurmanek\PycharmProjects\Engeto_Projekt_3_web_scraping\Archiv" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -148,12 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1713037189642</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Uprava stavajiciho projektu">
+      <option name="closed" value="true" />
+      <created>1713114956898</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713114956898</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Zalozeni noveho projektu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zalozeni noveho projektu" />
+    <MESSAGE value="Uprava stavajiciho projektu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uprava stavajiciho projektu" />
   </component>
 </project>
