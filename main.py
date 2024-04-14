@@ -10,10 +10,22 @@ def vymazani_obrazovky():
         Vymaže přikazovy řádek
 
         """
-    if os.name == 'nt':  # nt znamená Windows
+    if os.name == 'nt':
         os.system('cls')
     else:  # Posix (Linux, OS X, ...)
         os.system('clear')
+
+
+def stav_procesu(ukazatel):
+    global progress_bar  # Referencování globální proměnné
+
+    vymazani_obrazovky()  # Mazání obrazovky pro každé volání
+    if ukazatel == 0:
+        progress_bar = "Pracuji "  # Resetování pokud je to začátek procesu
+    elif ukazatel % 4 == 2:
+        progress_bar += "."  # Přidání tečky pro každý čtvrtý krok
+
+    print(progress_bar)  # Tisk aktuálního stavu
 
 
 def nacti_stranku(url):
@@ -117,17 +129,17 @@ def ziskej_data_ze_stranky(kod, nazev_obce, adresa):
     for idx, radek in enumerate(tabulky[0].find_all('tr')):
         if idx in akce:
             info = akce[idx]
-            vysledky = zpracuj_radek_a_filtruj(
-                radek.getText(" "), info['indexy'],
-                info['nezadouci'])
+            vysledky = zpracuj_radek_a_filtruj(radek.getText(" "), info['indexy'], info['nezadouci'])
             info['cil'].extend(vysledky)
 
     for tabulka in tabulky[1:]:
         for radek in tabulka.find_all('tr'):
-            vysl_z = zpracuj_radek_a_filtruj(radek.getText(" "),akce_ost['zahlavi']['indexy'],akce_ost['zahlavi']['nezadouci'])
+            vysl_z = zpracuj_radek_a_filtruj(radek.getText(" "), akce_ost['zahlavi']['indexy'],
+                                             akce_ost['zahlavi']['nezadouci'])
             akce_ost['zahlavi']['cil'].extend(vysl_z)
 
-            vysl_h = zpracuj_radek_a_filtruj(radek.getText(" "),akce_ost['hodnoty']['indexy'],akce_ost['hodnoty']['nezadouci'])
+            vysl_h = zpracuj_radek_a_filtruj(radek.getText(" "), akce_ost['hodnoty']['indexy'],
+                                             akce_ost['hodnoty']['nezadouci'])
             akce_ost['hodnoty']['cil'].extend(vysl_h)
 
     return zahlavi, hodnoty
@@ -137,28 +149,23 @@ def main():
 
     adresa = sys.argv[1]
     nazev_souboru = sys.argv[2]
-    progress_bar = "Pracuji "
+    progress_bar = "Pracuji"
 
     vymazani_obrazovky()
 
     with open(nazev_souboru, mode='w', newline='',
               encoding='utf-8') as soubor:
-        writer = csv.writer(soubor)
-        for index, (kod, obec, odkaz) in enumerate(
-                ziskej_seznam_okrsku(adresa)):
+        writer = csv.writer(soubor, delimiter=",")
+        for index, (kod, obec, odkaz) in enumerate(ziskej_seznam_okrsku(adresa)):
             header, hodnoty = ziskej_data_ze_stranky(
                 kod, obec, odkaz)
             if index == 0:
                 writer.writerow(header)
 
-            if index % 4 == 2:
-                vymazani_obrazovky()
-                progress_bar += "."
-                print(progress_bar)
-
             writer.writerow(hodnoty)
+            stav_procesu(index)
 
-    print("Prace skoncena")
+    print("Prace skoncena, soubor uložen se jmenem", nazev_souboru)
 
 
 if __name__ == "__main__":
