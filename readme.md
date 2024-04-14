@@ -1,7 +1,7 @@
-# Python Web Scraper pro Volební Data
+# Projekt č.3 Engeto Akademie Elections Scraper
 
 ## Popis
-Tento Python skript je nástrojem pro extrakci dat z webových stránek obsahujících informace o volebních okrscích. Skript načte stránku, extrahuje potřebné informace a ukládá je do CSV souboru. Tento projekt je užitečný pro automatizaci sběru volebních dat bez manuálního kopírování.
+Tento skript slouží pro extrakci dat z webovych stranek a ulozeni dat do CSV souboru.
 
 ## Funkcionalita
 Skript provádí následující úkoly:

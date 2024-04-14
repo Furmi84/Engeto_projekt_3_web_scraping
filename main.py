@@ -1,3 +1,9 @@
+"""
+projekt_3.py: třetí projekt do Engeto Online Python Akademie
+author: Martin Furmánek
+email: martin.furmanek@gmail.com
+discord: Furmi84
+"""
 from bs4 import BeautifulSoup
 import requests
 import csv
