@@ -161,25 +161,34 @@ def ziskej_data_ze_stranky(kod, nazev_obce, adresa):
 
 
 def main():
-    #adresa = 'https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103'
-    #nazev_souboru = 'vysledky_voleb.csv'
+    # adresa = 'https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103'
+    # nazev_souboru = 'vysledky_voleb.csv'
     adresa = sys.argv[1]
     nazev_souboru = sys.argv[2]
     progress_bar = "Pracuji"
+    data = []
 
-    vymazani_obrazovky()
+    for index, (kod, obec, odkaz) in enumerate(ziskej_seznam_okrsku(adresa)):
+        zahlavi, hodnoty = ziskej_data_ze_stranky(kod, obec, odkaz)
+        # print(index,header,hodnoty)
+        stav_procesu(index)
+        if index == 0:
+            # Inicializace slovníku
+            data = {key: [] for key in zahlavi}
 
-    with open(nazev_souboru, mode='w', newline='',
-              encoding='utf-8') as soubor:
-        writer = csv.writer(soubor, delimiter=",")
-        for index, (kod, obec, odkaz) in enumerate(ziskej_seznam_okrsku(adresa)):
-            header, hodnoty = ziskej_data_ze_stranky(
-                kod, obec, odkaz)
-            if index == 0:
-                writer.writerow(header)
+        for key, value in zip(zahlavi, hodnoty):
+            data[key].append(value)
 
-            writer.writerow(hodnoty)
-            stav_procesu(index)
+    # Otevření souboru pro zápis
+    with open(nazev_souboru, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file,delimiter=";")
+
+        # Zápis hlavičky
+        writer.writerow(data.keys())
+
+        # Zápis dat
+        for values in zip(*data.values()):
+            writer.writerow(values)
 
     print("Prace skoncena, soubor uložen se jmenem", nazev_souboru)
 
